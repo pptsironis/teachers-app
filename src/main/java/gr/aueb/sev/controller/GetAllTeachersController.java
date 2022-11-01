@@ -18,7 +18,7 @@ import gr.aueb.sev.service.TeacherServiceImpl;
 
 
 @WebServlet("/coursesmenu")
-public class GetAllTeachersForCoursesController extends HttpServlet {
+public class GetAllTeachersController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ITeacherDAO teacherDAO = new TeacherDAOImpl();
@@ -26,6 +26,10 @@ public class GetAllTeachersForCoursesController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
+		listTeachers(request, response);
+	}
+	
+	private void listTeachers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String lastname = "";
 		
 		try {
@@ -37,8 +41,8 @@ public class GetAllTeachersForCoursesController extends HttpServlet {
 					.forward(request, response);
 			}else {
 				request.setAttribute("teachers", teachers);
-				request.getRequestDispatcher("/jsps/coursesmenu.jsp") .forward(request,
-				response);	 
+				request.getRequestDispatcher("/jsps/coursesmenu.jsp")
+				.forward(request, response);
 			}
 			
 		}catch (SQLException e) {
@@ -47,4 +51,15 @@ public class GetAllTeachersForCoursesController extends HttpServlet {
 				.forward(request, response);
 		}
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		
+        int teacherId = Integer.parseInt(request.getParameter("teacherId"));
+        
+        request.setAttribute("selectedTeacherId", teacherId);
+ 
+        listTeachers(request, response);
+    }
 }

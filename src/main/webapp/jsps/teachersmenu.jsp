@@ -43,6 +43,11 @@
             <p class="text-danger">Teacher not found</p>
         </c:if>
     </div>
+    <div class="center"> 
+        <c:if test="${wasInserted}">
+            <p class="text-success">Teacher ${insertedTeacher.firstname} ${insertedTeacher.lastname} was inserted successfully</p>
+        </c:if>
+    </div>
 </jsp:attribute>
 </t:dashboard_layout>
 </html>

@@ -36,7 +36,8 @@ public class InsertTeacherController extends HttpServlet {
 		try {
 			teacherServ.insertTeacher(teacherDTO);
 			request.setAttribute("insertedTeacher", teacherDTO);
-			request.getRequestDispatcher("/jsps/teacherinserted.jsp")
+			request.setAttribute("wasInserted", true);
+			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 				.forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("sqlError", true);
