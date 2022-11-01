@@ -103,7 +103,7 @@ public class StudentDAOImpl implements IStudentDAO{
 		ResultSet rs = null; // the ResultSet is used for reading the table returned b 
 		
 		try {
-			String sql = "SELECT * FROM STUDENTS WHERE LASTNAME LIKE?";
+			String sql = "SELECT * FROM STUDENTS WHERE LASTNAME LIKE ?";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, lastname + "%");

@@ -17,7 +17,7 @@ import gr.aueb.sev.service.TeacherServiceImpl;
 import gr.aueb.sev.service.exceptions.TeacherNotFoundException;
 
 
-@WebServlet("/delete")
+@WebServlet("/delete-teacher")
 public class DeleteTeacherController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

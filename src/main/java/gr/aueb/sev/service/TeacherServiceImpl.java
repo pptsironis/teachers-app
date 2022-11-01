@@ -21,9 +21,9 @@ public class TeacherServiceImpl implements ITeacherService{
 		try {
 			teacherDAO.insert(teacher);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw e;
 		}
-		
 	}
 
 	@Override
@@ -34,6 +34,7 @@ public class TeacherServiceImpl implements ITeacherService{
 				throw new TeacherNotFoundException(teacherToDelete);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw e;
 		} catch (TeacherNotFoundException e) {
 			e.printStackTrace();
@@ -54,7 +55,6 @@ public class TeacherServiceImpl implements ITeacherService{
 			e.printStackTrace();
 			throw e;
 		}
-		
 	}
 
 	@Override

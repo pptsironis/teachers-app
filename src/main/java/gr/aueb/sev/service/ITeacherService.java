@@ -14,7 +14,7 @@ public interface ITeacherService {
 	 * @param teacherDTO
 	 * 			DTO object that contains the data. 
 	 * @throws SQLException
-	 * 			if any error happens during SQL insert 
+	 * 			if any error happens during SQL transaction
 	 */
 	void insertTeacher(TeacherDTO teacherDTO) throws SQLException;
 	/**
@@ -23,7 +23,7 @@ public interface ITeacherService {
 	 * @param teacherDTO
 	 * 			DTO object that contains the data.
 	 * @throws SQLException
-	 * 			if any error happens during SQL insert
+	 * 			if any error happens during SQL transaction
 	 * @throws TeacherNotFoundException
 	 * 			if the teacher is not found
 	 * 			
@@ -47,7 +47,7 @@ public interface ITeacherService {
 	 * @return 
 	 * 			{@link List} of {@link Teacher} found based on last name
 	 * @throws SQLException
-	 * 			if any error happens during SQL insert
+	 * 			if any error happens during SQL transaction
 	 */
 	List<Teacher> getTeachersByLastname(String lastname) throws SQLException;
 	
@@ -58,7 +58,7 @@ public interface ITeacherService {
 	 * @return
 	 * 			the {@link Teacher} with the appropriate id or null if the teacher not found
 	 * @throws SQLException
-	 * 			if any error happens during SQL insert
+	 * 			if any error happens during SQL transaction
 	 * @throws TeacherNotFoundException
 	 * 			if the teacher is not found
 	 */

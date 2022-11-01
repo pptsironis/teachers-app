@@ -36,7 +36,4 @@ public class TeacherDTO {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	
-	
-
 }

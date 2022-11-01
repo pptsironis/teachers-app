@@ -17,7 +17,7 @@ import gr.aueb.sev.service.ITeacherService;
 import gr.aueb.sev.service.TeacherServiceImpl;
 
 
-@WebServlet("/search")
+@WebServlet("/search-teacher")
 public class SearchTeacherController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,7 +34,7 @@ public class SearchTeacherController extends HttpServlet {
 			
 			if (teachers.size() == 0) {
 				request.setAttribute("teacherNotFound", true);
-				request.getRequestDispatcher("/jsps/teachersmenu.jsp")
+				request.getRequestDispatcher("/jsps/menu.jsp")
 					.forward(request, response);
 			}else {
 				request.setAttribute("teachers", teachers);
@@ -44,7 +44,7 @@ public class SearchTeacherController extends HttpServlet {
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
+			request.getRequestDispatcher("/jsps/menu.jsp")
 				.forward(request, response);
 		}
 	}

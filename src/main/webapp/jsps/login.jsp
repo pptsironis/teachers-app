@@ -12,11 +12,11 @@
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <h1>Login</h1>
+                <h1>Administrator Login</h1>
             </div>
             <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="row">
-                    <input type="email" name="eMail" required placeholder="E-Mail">
+                    <input type="email" name="eMail" required placeholder="E-Mail" autofocus>
                 </div>
                 <div class="row">
                     <input type="password" name="password" required placeholder="Password">
@@ -38,7 +38,7 @@
     <div class="container-error">
             <c:if test="${error}">
                 <p>Login Error</p>
-            </c:if>
+            </c:if> 
         </div>
 </body>
 </html>

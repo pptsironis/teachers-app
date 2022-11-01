@@ -15,7 +15,7 @@ import gr.aueb.sev.dto.TeacherDTO;
 import gr.aueb.sev.service.ITeacherService;
 import gr.aueb.sev.service.TeacherServiceImpl;
 
-@WebServlet("/insert")
+@WebServlet("/insert-teacher")
 public class InsertTeacherController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,5 +44,4 @@ public class InsertTeacherController extends HttpServlet {
 				.forward(request, response);
 		}
 	}
-
 }

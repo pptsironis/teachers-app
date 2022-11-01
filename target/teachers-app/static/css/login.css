@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    width: 50%;
+    /* margin: 0 auto; */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: cornflowerblue;
+    padding: 20px 0;
+}
+
+.container {
+    width: 80%;
+    min-height: 270px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.row {
+    padding: 10px 0;
+}
+
+.container > .row:first-child {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.container input[type="email"]
+.container input[type="password"] {
+    width: 70%;
+    height: 40px;
+    background-color: #faf4f4;
+    border-radius: 5px;
+    border-width: 0;
+    padding-left: 10px;
+}
+
+.container button[type="submit"] {
+    width: 90%;
+    height: 40px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 2px;
+    border-width: 0;
+    padding-left: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.container > .row:last-child > a {
+    text-decoration: none;
+    /* color: inherit; */
+}
+
+/* .container > .row:last-child > a:link {
+    color: black;
+} 
+.container > .row:last-child > a:hover {
+    color: red;
+}
+
+.container > .row:last-child > a:visited {
+    color: black;
+} */
+
+.container-fluid > .row:last-child {
+    padding-top: 25px;
+    text-align: center;
+    color: white;
+}
+
+.text-grey {
+    color: rgb(198,92,92) !important;
+}

@@ -15,7 +15,7 @@ import gr.aueb.sev.dto.TeacherDTO;
 import gr.aueb.sev.service.ITeacherService;
 import gr.aueb.sev.service.TeacherServiceImpl;
 
-@WebServlet("/update")
+@WebServlet("/update-teacher")
 public class UpdateTeacherController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,7 +60,7 @@ public class UpdateTeacherController extends HttpServlet {
 				.forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
+			request.getRequestDispatcher("/jsps/menu.jsp")
 				.forward(request, response);
 		}
 	}
