@@ -18,8 +18,8 @@ import gr.aueb.sev.service.StudentCourseServiceImpl;
 /**
  * Servlet implementation class InsertStudentCourseController
  */
-@WebServlet("/insert-screlation")
-public class InsertStudentCourseController extends HttpServlet {
+@WebServlet("/insert-csrelation")
+public class InsertCourseStudentController extends HttpServlet {
 private static final long serialVersionUID = 1L;
 	
 	IStudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
@@ -39,11 +39,11 @@ private static final long serialVersionUID = 1L;
 		try {
 			studentCourseServ.insertStudentCourse(studentCourseDTO);
 			request.setAttribute("insertedStudentCourse", studentCourseDTO);
-			request.getRequestDispatcher("/student-courses")
+			request.getRequestDispatcher("/course-students")
 				.forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/student-courses")
+			request.getRequestDispatcher("/course-students")
 				.forward(request, response);
 		}
 	}

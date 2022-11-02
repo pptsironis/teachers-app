@@ -3,9 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <t:dashboard_layout title="Student's Courses" menu_name="${student.lastname} ${student.firstname}  Courses">
-	<jsp:attribute name="form_area">
-		<a href="${pageContext.request.contextPath}/coursesnotrelatedtostudent?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-primary btn-sm">Add Course</a> <%-- ${pageContext.request.contextPath}/coursesnotstudent?student_id=${student.id} --%>
-	</jsp:attribute>
 	<jsp:attribute name="table_area">
 		<c:if test="${hasCourses}">
 			<h2>Student's Courses</h2>
@@ -23,7 +20,7 @@
 						   <tr>
 						       <td>${course.id}</td>
 						       <td>${course.description}</td>
-						       <td><a href="${pageContext.request.contextPath}/delete-screlation?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-warning btn-sm">Remove Course</a></td>
+						       <td><a href="${pageContext.request.contextPath}/delete-screlation?studentId=${student.id}&courseId=${course.id}&id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-danger btn-sm">Remove Course</a></td>
 						   </tr>
 						</c:forEach>
                     </tbody>
@@ -46,7 +43,7 @@
 						   <tr>
 						       <td>${course.id}</td>
 						       <td>${course.description}</td>
-						       <td><a href="${pageContext.request.contextPath}/insert-screlation?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-success btn-sm">Add Course</a></td>
+						       <td><a href="${pageContext.request.contextPath}/insert-screlation?studentId=${student.id}&courseId=${course.id}&id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-success btn-sm">Add Course</a></td>
 						   </tr>
 						</c:forEach>
                     </tbody>

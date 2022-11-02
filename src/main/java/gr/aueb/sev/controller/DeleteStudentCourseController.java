@@ -41,18 +41,17 @@ public class DeleteStudentCourseController extends HttpServlet {
 		try {
 			
 			studentCourseServ.deleteStudentCourse(studentCourseDTO);
-			
 			request.setAttribute("studentCourse", studentCourseDTO);
 			request.getRequestDispatcher("/student-courses")
 				.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("deleteAPIError", true);
-			request.getRequestDispatcher("/jsps/studentcourses.jsp")
+			request.getRequestDispatcher("/student-courses")
 				.forward(request, response);
 		} catch (StudentCourseNotFoundException e){
 			request.setAttribute("studentCourseNotFound", true);
-			request.getRequestDispatcher("/jsps/studentCourses.jsp")
+			request.getRequestDispatcher("/student-courses")
 				.forward(request, response);
 		}
 	}

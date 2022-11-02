@@ -45,7 +45,7 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		PreparedStatement pst = null;
 		Connection conn = getConnection();
 		try {
-			String sql = "DELETE FROM STUDENTS_COPURSES WHERE STUDENT_ID = ? AND COURSE_ID = ?";
+			String sql = "DELETE FROM STUDENTS_COURSES WHERE STUDENT_ID = ? AND COURSE_ID = ?";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, studentCourse.getStudentId());
@@ -84,7 +84,7 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 			while(rs.next()) {
 				Course course = new Course();
 				course.setId(rs.getInt("ID"));
-				course.setDescription(rs.getString("DDESCRIPTION"));
+				course.setDescription(rs.getString("DESCRIPTION"));
 				course.setTeacherId(rs.getInt("TEACHER_ID"));
 				courses.add(course);
 			}
@@ -135,8 +135,8 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		List<Course> courses = new ArrayList<>();
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COURSES.* FROM COURSES INNER JOIN STUDENTS_COURSES ON "
-					+ "STUDENTS_COURSES.COURSE_ID = COURSES.ID WHERE STUDENT_ID != ?";
+			String sql = "SELECT COURSES.* FROM COURSES LEFT JOIN STUDENTS_COURSES ON "
+					+ "STUDENTS_COURSES.COURSE_ID = COURSES.ID WHERE STUDENT_ID != ? OR STUDENT_ID IS NULL";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, studentId);
 			
@@ -144,7 +144,7 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 			while(rs.next()) {
 				Course course = new Course();
 				course.setId(rs.getInt("ID"));
-				course.setDescription(rs.getString("DDESCRIPTION"));
+				course.setDescription(rs.getString("DESCRIPTION"));
 				course.setTeacherId(rs.getInt("TEACHER_ID"));
 				courses.add(course);
 			}
@@ -165,8 +165,8 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		List<Student> students = new ArrayList<>();
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT STUDENTS.* FROM STUDENTS INNER JOIN STUDENTS_COURSES ON "
-					+ "STUDENTS_COURSES.STUDENT_ID = STUDENTS.ID WHERE COURSE_ID != ?";
+			String sql = "SELECT STUDENTS.* FROM STUDENTS LEFT JOIN STUDENTS_COURSES ON "
+					+ "STUDENTS_COURSES.STUDENT_ID = STUDENTS.ID WHERE COURSE_ID != ? OR COURSE_ID IS NULL";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, courseId);
 			

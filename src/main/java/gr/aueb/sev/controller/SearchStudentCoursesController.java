@@ -52,7 +52,6 @@ public class SearchStudentCoursesController extends HttpServlet {
 				request.setAttribute("hasTable", true);
 				request.setAttribute("notStudentCourses", notStudentCourses);
 			}
-			
 			request.getRequestDispatcher("/jsps/studentcourses.jsp")
 			.forward(request, response);
 			

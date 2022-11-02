@@ -12,14 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import gr.aueb.sev.dao.IStudentCourseDAO;
 import gr.aueb.sev.dao.StudentCourseDAOImpl;
+import gr.aueb.sev.dto.CourseDTO;
 import gr.aueb.sev.model.Student;
 import gr.aueb.sev.service.IStudentCourseService;
 import gr.aueb.sev.service.StudentCourseServiceImpl;
 
-/**
- * Servlet implementation class SearchStudentsCourseControler
- */
-@WebServlet("/serach-sbcrelation")
+@WebServlet("/course-students")
 public class SearchStudentsCourseControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -29,24 +27,37 @@ public class SearchStudentsCourseControler extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		
-		int courseId = Integer.parseInt(request.getParameter("courseId").trim());
+		int id = Integer.parseInt(request.getParameter("id"));
+		String description = request.getParameter("description").trim();
+		int teacherId = Integer.parseInt(request.getParameter("teacherId").trim());
+		
+		CourseDTO courseDTO = new CourseDTO();
+		courseDTO.setId(id);
+		courseDTO.setDescription(description);
+		courseDTO.setTeacherId(teacherId);
 		
 		try {
-			List<Student> courseStudents= studentCourseServ.getStudentsByCourses(courseId);
-			
+			List<Student> courseStudents= studentCourseServ.getStudentsByCourses(id);
+			List<Student> notCourseStudents= studentCourseServ.getStudentsByCourses(id);
+			request.setAttribute("course", courseDTO);
 			if (courseStudents.size() == 0) {
 				request.setAttribute("studentCourseNotFound", true);
-				request.getRequestDispatcher("/jsps/menu.jsp")
-					.forward(request, response);
 			}else {
+				request.setAttribute("hasStudents", true);
 				request.setAttribute("courseStudents", courseStudents);
-				request.getRequestDispatcher("/jsps/courseStudents.jsp")
-					.forward(request, response);
 			}
+			if (notCourseStudents.size() == 0) {
+				request.setAttribute("studentCourseNotFound", true);
+			}else {
+				request.setAttribute("hasTable", true);
+				request.setAttribute("notStudentCourses", notCourseStudents);
+			}
+			request.getRequestDispatcher("/jsps/coursestudents.jsp")
+			.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/jsps/coursestudents.jsp")
 				.forward(request, response);
 		}
 	}
