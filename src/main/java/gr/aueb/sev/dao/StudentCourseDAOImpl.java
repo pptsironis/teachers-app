@@ -40,7 +40,6 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		}
 	}
 
-
 	@Override
 	public StudentCourse delete(StudentCourse studentCourse) throws SQLException {
 		PreparedStatement pst = null;
@@ -128,6 +127,65 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 			if (getConnection()!=null) closeConnection();
 		}
 	}
-	
 
+	@Override
+	public List<Course> getCoursesNonRelatedToStudent(int studentId) throws SQLException {
+		PreparedStatement pst = null;
+		Connection conn = getConnection();
+		List<Course> courses = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT COURSES.* FROM COURSES INNER JOIN STUDENTS_COURSES ON "
+					+ "STUDENTS_COURSES.COURSE_ID = COURSES.ID WHERE STUDENT_ID != ?";
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, studentId);
+			
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Course course = new Course();
+				course.setId(rs.getInt("ID"));
+				course.setDescription(rs.getString("DDESCRIPTION"));
+				course.setTeacherId(rs.getInt("TEACHER_ID"));
+				courses.add(course);
+			}
+			return courses;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (pst!=null) pst.close();
+			if (getConnection()!= null) closeConnection();
+		}
+	}
+	
+	@Override
+	public List<Student> getStudentsNonRelatedToCourse(int courseId) throws SQLException {
+		PreparedStatement pst = null;
+		Connection conn = getConnection();
+		List<Student> students = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT STUDENTS.* FROM STUDENTS INNER JOIN STUDENTS_COURSES ON "
+					+ "STUDENTS_COURSES.STUDENT_ID = STUDENTS.ID WHERE COURSE_ID != ?";
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, courseId);
+			
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Student student = new Student();
+				student.setId(rs.getInt("ID"));
+				student.setFirstname(rs.getString("FIRSTNAME"));
+				student.setLastname(rs.getString("LASTNAME"));
+				students.add(student);
+			}
+			return students;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(pst!=null) pst.close();
+			if (getConnection()!=null) closeConnection();
+		}
+	}
+	
 }

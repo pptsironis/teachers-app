@@ -1,12 +1,11 @@
 <%@ tag language="java" pageEncoding="UTF-8" description="Dashboard Template"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 <%@attribute name="title" required="true"%>
 <%@attribute name="menu_name" required="true" %>
-<%@attribute name="table_title"%>
 <%@attribute name="head_area" fragment="true" %>
 <%@attribute name="form_area" fragment="true" %>
-<%@attribute name="th_area" fragment="true" %>
-<%@attribute name="td_area" fragment="true" %>
+<%@attribute name="table_area" fragment="true" %>
 <!DOCTYPE>
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@
 
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"></a>
+    <a class="navbar-brand col-sm-3 col-md-2 me-0 px-3" href="${pageContext.request.contextPath}/jsps/teachersmenu.jsp">Administration HomePage</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="${pageContext.request.contextPath}/jsps/login.jsp">Sign out</a>
@@ -89,20 +88,7 @@
             
      		<jsp:invoke fragment="form_area"/>
  			
-
-            <h2>${table_title}</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <jsp:invoke fragment="th_area"/>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <jsp:invoke fragment="td_area"/>
-                    </tbody>
-                </table>
-            </div>
+            <jsp:invoke fragment="table_area"/>
         </main>
     </div>
 </div>

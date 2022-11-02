@@ -39,11 +39,12 @@ public class InsertStudentController extends HttpServlet {
 		try {
 			studentServ.insertStudent(studentDTO);
 			request.setAttribute("insertedStudent", studentDTO);
-			request.getRequestDispatcher("/jsps/studentinserted.jsp")
+			request.setAttribute("wasInserted", true);
+			request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 				.forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 				.forward(request, response);
 		}
 	}

@@ -40,18 +40,18 @@ private static final long serialVersionUID = 1L;
 		try {
 			
 			courseServ.deleteCourse(courseDTO);
-			
+			request.setAttribute("wasDeleted", true);
 			request.setAttribute("course", courseDTO);
-			request.getRequestDispatcher("/jsps/coursedeleted.jsp")
+			request.getRequestDispatcher("/coursesmenu")
 				.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("deleteAPIError", true);
-			request.getRequestDispatcher("/jsps/courses.jsp")
+			request.getRequestDispatcher("/coursesmenu")
 				.forward(request, response);
 		} catch (CourseNotFoundException e){
 			request.setAttribute("courseNotFound", true);
-			request.getRequestDispatcher("/jsps/courses.jsp")
+			request.getRequestDispatcher("/coursesmenu")
 				.forward(request, response);
 		}
 	}

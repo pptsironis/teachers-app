@@ -17,8 +17,11 @@ import gr.aueb.sev.model.Course;
 import gr.aueb.sev.service.IStudentCourseService;
 import gr.aueb.sev.service.StudentCourseServiceImpl;
 
-@WebServlet("/student-courses")
-public class SearchStudentCoursesController extends HttpServlet {
+/**
+ * Servlet implementation class SearchStudentCourseController
+ */
+@WebServlet("/coursesnotrelatedtostudent")
+public class SearchCoursesNonRelatedToStudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	IStudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
@@ -37,24 +40,19 @@ public class SearchStudentCoursesController extends HttpServlet {
 		studentDTO.setLastname(lastname);
 		
 		try {
-			List<Course> studentCourses= studentCourseServ.getCoursesByStudent(id);
-			List<Course> notStudentCourses= studentCourseServ.getCoursesNonRelatedToStudent(id);
+			List<Course> studentCourses= studentCourseServ.getCoursesNonRelatedToStudent(id);
 			request.setAttribute("student", studentDTO);
 			if (studentCourses.size() == 0) {
 				request.setAttribute("studentCourseNotFound", true);
-			}else {
-				request.setAttribute("hasCourses", true);
-				request.setAttribute("studentCourses", studentCourses);
-			}
-			if (notStudentCourses.size() == 0) {
-				request.setAttribute("studentCourseNotFound", true);
+				
+				request.getRequestDispatcher("/jsps/studentcourses.jsp")
+					.forward(request, response);
 			}else {
 				request.setAttribute("hasTable", true);
-				request.setAttribute("notStudentCourses", notStudentCourses);
+				request.setAttribute("studentCourses", studentCourses);
+				request.getRequestDispatcher("/jsps/studentcourses.jsp")
+					.forward(request, response);
 			}
-			
-			request.getRequestDispatcher("/jsps/studentcourses.jsp")
-			.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);

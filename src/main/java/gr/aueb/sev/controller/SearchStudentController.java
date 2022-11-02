@@ -34,17 +34,18 @@ private static final long serialVersionUID = 1L;
 			
 			if (students.size() == 0) {
 				request.setAttribute("studentNotFound", true);
-				request.getRequestDispatcher("/jsps/menu.jsp")
+				request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 					.forward(request, response);
 			}else {
 				request.setAttribute("students", students);
-				request.getRequestDispatcher("/jsps/students.jsp")
+				request.setAttribute("hasTable", true);
+				request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 					.forward(request, response);
 			}
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 				.forward(request, response);
 		}
 	}

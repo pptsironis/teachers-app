@@ -61,6 +61,27 @@ public class StudentCourseServiceImpl implements IStudentCourseService{
 		}
 	}
 
+
+	@Override
+	public List<Course> getCoursesNonRelatedToStudent(int studentId) throws SQLException {
+		try {
+			return studentCourseDAO.getCoursesNonRelatedToStudent(studentId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public List<Student> getStudentsNonRelatedToCourse(int courseId) throws SQLException {
+		try {
+			return studentCourseDAO.getStudentsNonRelatedToCourse(courseId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
 	private StudentCourse extract(StudentCourseDTO studentCourseDTO) {
 		StudentCourse studentCourse = new StudentCourse();
 		studentCourse.setCourseId(studentCourseDTO.getCourseId());

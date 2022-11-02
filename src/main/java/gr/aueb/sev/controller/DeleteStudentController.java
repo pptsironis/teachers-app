@@ -40,18 +40,18 @@ public class DeleteStudentController extends HttpServlet {
 		try {
 			
 			studentServ.deleteStudent(studentDTO);
-			
-			request.setAttribute("student", studentDTO);
-			request.getRequestDispatcher("/jsps/studentdeleted.jsp")
+			request.setAttribute("deletedStudent", studentDTO);
+			request.setAttribute("wasDeleted", true);
+			request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 				.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("deleteAPIError", true);
-			request.getRequestDispatcher("/jsps/students.jsp")
+			request.getRequestDispatcher("/jsps/stentsmenu.jsp")
 				.forward(request, response);
 		} catch (StudentNotFoundException e){
 			request.setAttribute("studentNotFound", true);
-			request.getRequestDispatcher("/jsps/students.jsp")
+			request.getRequestDispatcher("/jsps/studentsmenu.jsp")
 				.forward(request, response);
 		}
 	}

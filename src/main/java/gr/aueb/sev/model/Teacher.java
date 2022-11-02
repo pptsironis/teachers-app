@@ -37,7 +37,7 @@ public class Teacher {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + "]";

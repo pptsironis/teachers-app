@@ -40,21 +40,19 @@ public interface IStudentCourseService {
 	
 	/**
 	 * Gets a {@link List} of {@link Course} based on a student id
+	 * 
 	 * @param studentId
 	 * 			the id of student we want the courses he participates in
 	 * @return
 	 * 			{@link List} of {@link Course} found based on student id
 	 * @throws SQLException
 	 * 			if any error happens during SQL transaction
-	 * @throws CourseNotFoundException
-	 * 			if the course is not found
-	 * @throws StudentNotFoundException
-	 * 			if the Student is not found
 	 */
 	List<Course> getCoursesByStudent(int studentId) throws SQLException;
 	
 	/**
 	 * Gets a {@link List} of {@link Student} based on a course id
+	 * 
 	 * @param courseId
 	 * 			the id of course we want the students that participate in it
 	 * @return
@@ -63,4 +61,28 @@ public interface IStudentCourseService {
 	 * 			if any error happens during SQL transaction
 	 */
 	List<Student> getStudentsByCourses(int courseId) throws SQLException;
+	
+	/**
+	 * Gets a {@link List} of {@link Course} based on a student id not related to student
+	 * 
+	 * @param studentId
+	 * 			the id of student we want the courses he participates in
+	 * @return
+	 * 			{@link List} of {@link Course} found based on student id
+	 * @throws SQLException
+	 * 			if any error happens during SQL transaction
+	 */
+	List<Course> getCoursesNonRelatedToStudent(int studentId) throws SQLException;
+	
+	/**
+	 * Gets a {@link List} of {@link Student} based on a course id not related to course
+	 * 
+	 * @param courseId
+	 * 			the id of course we want the students that participate in it
+	 * @return
+	 * 			{@link List} of {@link Student} found based on course id
+	 * @throws SQLException
+	 * 			if any error happens during SQL transaction
+	 */
+	List<Student> getStudentsNonRelatedToCourse(int courseId) throws SQLException;
 }

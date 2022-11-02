@@ -73,11 +73,11 @@ public class CourseDAOImpl implements ICourseDAO{
 		
 		try {
 			
-			String sql = "UPDATE COURSES SET DESCRIPTION = ?, TEACHER_IS = ? WHERE ID = ?";
+			String sql = "UPDATE COURSES SET DESCRIPTION = ?, TEACHER_ID = ? WHERE ID = ?";
 			
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, newCourse.getDescription());
-			pst.setInt(1, newCourse.getTeacherId());
+			pst.setInt(2, newCourse.getTeacherId());
 			pst.setInt(3, oldCourse.getId());
 			
 			pst.executeUpdate();

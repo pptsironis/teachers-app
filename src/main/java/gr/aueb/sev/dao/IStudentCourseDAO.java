@@ -12,4 +12,6 @@ public interface IStudentCourseDAO {
 	StudentCourse delete(StudentCourse studentCourse) throws SQLException;
 	List<Course> getCoursesByStudent(int studentId) throws SQLException;
 	List<Student> getStudentsByCourse(int courseId) throws SQLException;
+	List<Course> getCoursesNonRelatedToStudent(int studentId) throws SQLException;
+	List<Student> getStudentsNonRelatedToCourse(int courseId) throws SQLException;
 }

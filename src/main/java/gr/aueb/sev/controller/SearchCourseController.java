@@ -36,17 +36,18 @@ public class SearchCourseController extends HttpServlet {
 			
 			if (courses.size() == 0) {
 				request.setAttribute("courseNotFound", true);
-				request.getRequestDispatcher("/jsps/menu.jsp")
+				request.getRequestDispatcher("/coursesmenu")
 					.forward(request, response);
 			}else {
 				request.setAttribute("courses", courses);
-				request.getRequestDispatcher("/jsps/courses.jsp")
+				request.setAttribute("hasTable", true);
+				request.getRequestDispatcher("/coursesmenu")
 					.forward(request, response);
 			}
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/coursesmenu")
 				.forward(request, response);
 		}
 	}
