@@ -56,11 +56,12 @@ public class UpdateTeacherController extends HttpServlet {
 		try {
 			teacherServ.updateTeacher(oldTeacherDTO, newTeacherDTO);
 			request.setAttribute("updatedTeacher", newTeacherDTO);
-			request.getRequestDispatcher("/jsps/teacherinserted.jsp")
+			request.setAttribute("wasUpdated", true);
+			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 				.forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 				.forward(request, response);
 		}
 	}

@@ -34,17 +34,18 @@ public class SearchTeacherController extends HttpServlet {
 			
 			if (teachers.size() == 0) {
 				request.setAttribute("teacherNotFound", true);
-				request.getRequestDispatcher("/jsps/menu.jsp")
+				request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 					.forward(request, response);
 			}else {
 				request.setAttribute("teachers", teachers);
-				request.getRequestDispatcher("/jsps/teachers.jsp")
+				request.setAttribute("hasTable", true);
+				request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 					.forward(request, response);
 			}
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/menu.jsp")
+			request.getRequestDispatcher("/jsps/teachersmenu.jsp")
 				.forward(request, response);
 		}
 	}

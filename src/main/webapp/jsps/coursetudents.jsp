@@ -22,7 +22,7 @@
 						       <td>${student.id}</td>
 						       <td>${student.firstname}</td>
 						       <td>${student.lastname}</td>
-						       <td><a href="${pageContext.request.contextPath}/delete-csrelation?studentId=${student.id}&courseId=${course.id}&id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-danger btn-sm">Remove Course</a></td>
+						       <td><a href="${pageContext.request.contextPath}/delete-csrelation?studentId=${student.id}&courseId=${course.id}&id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-danger btn-sm">Remove Student</a></td>
 						   </tr>
 						</c:forEach>
                     </tbody>
@@ -38,7 +38,7 @@
 							<th>ID</th>
 					        <th>Lastname</th>
 					        <th>Firstname</th>
-					        <th>Delete</th>
+					        <th>Add</th>
 					    </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
 						       <td>${student.id}</td>
 						       <td>${student.firstname}</td>
 						       <td>${student.lastname}</td>
-						       <td><a href="${pageContext.request.contextPath}/insert-csrelation?studentId=${student.id}&courseId=${course.id}&id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-success btn-sm">Add Course</a></td>
+						       <td><a href="${pageContext.request.contextPath}/insert-csrelation?studentId=${student.id}&courseId=${course.id}&id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-success btn-sm">Add Student</a></td>
 						   </tr>
 						</c:forEach>
                     </tbody>

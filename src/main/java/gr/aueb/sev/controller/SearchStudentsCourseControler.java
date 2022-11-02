@@ -38,7 +38,7 @@ public class SearchStudentsCourseControler extends HttpServlet {
 		
 		try {
 			List<Student> courseStudents= studentCourseServ.getStudentsByCourses(id);
-			List<Student> notCourseStudents= studentCourseServ.getStudentsByCourses(id);
+			List<Student> notCourseStudents= studentCourseServ.getStudentsNonRelatedToCourse(id);
 			request.setAttribute("course", courseDTO);
 			if (courseStudents.size() == 0) {
 				request.setAttribute("studentCourseNotFound", true);
@@ -50,14 +50,14 @@ public class SearchStudentsCourseControler extends HttpServlet {
 				request.setAttribute("studentCourseNotFound", true);
 			}else {
 				request.setAttribute("hasTable", true);
-				request.setAttribute("notStudentCourses", notCourseStudents);
+				request.setAttribute("notCourseStudents", notCourseStudents);
 			}
-			request.getRequestDispatcher("/jsps/coursestudents.jsp")
+			request.getRequestDispatcher("/jsps/coursetudents.jsp")
 			.forward(request, response);
 			
 		}catch (SQLException e) {
 			request.setAttribute("sqlError", true);
-			request.getRequestDispatcher("/jsps/coursestudents.jsp")
+			request.getRequestDispatcher("/jsps/coursetudents.jsp")
 				.forward(request, response);
 		}
 	}

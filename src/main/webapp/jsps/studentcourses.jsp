@@ -35,7 +35,7 @@
                         <tr>
 							<th>ID</th>
 					        <th>Description</th>
-					        <th>Delete</th>
+					        <th>Add</th>
 					    </tr>
                     </thead>
                     <tbody>
