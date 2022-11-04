@@ -87,3 +87,9 @@
 .text-grey {
     color: rgb(198,92,92) !important;
 }
+
+.text-danger{
+	color:red !important;
+	position:relative;
+	margin-left:47%;
+}

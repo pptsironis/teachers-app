@@ -37,7 +37,7 @@
     </div>
     <div class="container-error">
             <c:if test="${error}">
-                <p>Login Error</p>
+                <p class="text-danger">Login Error</p>
             </c:if> 
         </div>
 </body>

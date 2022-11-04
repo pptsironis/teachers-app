@@ -70,7 +70,7 @@
 					        <th>Lastname</th>
 					        <th>Delete</th>
 					        <th>Update</th>
-					        <th>Student's Courses</th>
+					        <th>Courses</th>
 					    </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,7 @@
 						       <td>${student.lastname}</td>
 						       <td><a href="${pageContext.request.contextPath}/delete-student?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-danger btn-sm">Delete</a></td>
 						       <td><a href="${pageContext.request.contextPath}/update-student?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-primary btn-sm">Update</a></td>
-						       <td><a href="${pageContext.request.contextPath}/student-courses?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-primary btn-sm">Student's Courses</a></td>
+						       <td><a href="${pageContext.request.contextPath}/student-courses?id=${student.id}&firstname=${student.firstname}&lastname=${student.lastname}" class="btn btn-outline-primary btn-sm">Add/Remove</a></td>
 						   </tr>
 						</c:forEach>
                     </tbody>

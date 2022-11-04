@@ -74,7 +74,7 @@
 				        <th>TeacherId</th>
 				        <th>Delete</th>
 				        <th>Update</th>
-				        <th>Courses's Students</th>
+				        <th>Students</th>
 				    </tr>
                 </thead>
                 <tbody>
@@ -85,7 +85,7 @@
 					       <td>${course.teacherId}</td>
 					       <td><a href="${pageContext.request.contextPath}/delete-course?id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-danger btn-sm">Delete</a></td>
 					       <td><a href="${pageContext.request.contextPath}/update-course?id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-primary btn-sm">Update</a></td>
-					       <td><a href="${pageContext.request.contextPath}/course-students?id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-primary btn-sm">Course's Students</a></td>
+					       <td><a href="${pageContext.request.contextPath}/course-students?id=${course.id}&description=${course.description}&teacherId=${course.teacherId}" class="btn btn-outline-primary btn-sm">Add/Remove</a></td>
 					   </tr>
 					</c:forEach>
                 </tbody>

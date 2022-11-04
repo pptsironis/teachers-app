@@ -135,10 +135,11 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		List<Course> courses = new ArrayList<>();
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT COURSES.* FROM COURSES LEFT JOIN STUDENTS_COURSES ON "
-					+ "STUDENTS_COURSES.COURSE_ID = COURSES.ID WHERE STUDENT_ID != ? OR STUDENT_ID IS NULL";
+			String sql = "SELECT COURSES.* FROM COURSES LEFT JOIN STUDENTS_COURSES ON STUDENTS_COURSES.COURSE_ID = COURSES.ID WHERE "
+					+ "COURSE_ID NOT IN (SELECT COURSE_ID FROM STUDENTS_COURSES WHERE STUDENT_ID = ?) AND STUDENT_ID != ? OR STUDENT_ID IS NULL";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, studentId);
+			pst.setInt(2, studentId);
 			
 			rs = pst.executeQuery();
 			while(rs.next()) {
@@ -165,10 +166,11 @@ public class StudentCourseDAOImpl implements IStudentCourseDAO{
 		List<Student> students = new ArrayList<>();
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT STUDENTS.* FROM STUDENTS LEFT JOIN STUDENTS_COURSES ON "
-					+ "STUDENTS_COURSES.STUDENT_ID = STUDENTS.ID WHERE COURSE_ID != ? OR COURSE_ID IS NULL";
+			String sql = "SELECT STUDENTS.* FROM STUDENTS LEFT JOIN STUDENTS_COURSES ON STUDENTS_COURSES.STUDENT_ID = STUDENTS.ID WHERE "
+					+ "STUDENT_ID NOT IN (SELECT STUDENT_ID FROM STUDENTS_COURSES WHERE COURSE_ID = ?) AND COURSE_ID != ? OR COURSE_ID IS NULL";
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, courseId);
+			pst.setInt(2, courseId);
 			
 			rs = pst.executeQuery();
 			while(rs.next()) {
